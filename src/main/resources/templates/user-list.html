@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        button {
+            padding: 10px;
+            background-color: beige;
+        }
+
+        .buttonDelete {
+            background: tomato;
+            color: white;
+        }
+
+        .buttonEdit {
+            background: cyan;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2>List of users</h2>
+    <table th:border="2" th:align="left">
+        <tr style="font-size: 15px">
+            <td>Id</td>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Age</td>
+            <td>Email</td>
+            <td colspan="2">Action</td>
+        </tr>
+        <tr th:each="user :  ${users}">
+            <td><p th:text="${user.id}"/></td>
+            <td><p th:text="${user.name}"/></td>
+            <td><p th:text="${user.surName}"/></td>
+            <td><p th:text="${user.age}"/></td>
+            <td><p th:text="${user.email}"/></td>
+            <td>
+                <form th:action="@{${user.id} + '/user-update'}">
+                    <input type="submit" class="buttonEdit" value="Edit"/>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{${user.id} + '/user-delete'}">
+                <input type="submit" class="buttonDelete" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <button onclick="window.location.href = '/user-create';">Add new user</button>
+</div>
+</body>
+</html>

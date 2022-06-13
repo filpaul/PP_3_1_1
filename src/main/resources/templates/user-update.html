@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style>
+        td {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            background-color: ivory;
+        }
+        .buttonEdit {
+            background: cyan;
+        }
+        div {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h3>Edit user</h3>
+<form th:method="post" th:action="@{/{id}/user-update (id=${user.getId()})}" th:object="${user}">
+<table>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{name}">
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>Surname:</td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{surName}">
+                    <div th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}">surName error</div>
+                </label>
+            </td>
+        </tr>
+        <tbody>
+        <tr>
+            <td>Age:</td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{age}">
+                    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age error</div>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{email}">
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
+                </label>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" class="buttonEdit" value="Edit"/>
+</form>
+</body>
+</html>
